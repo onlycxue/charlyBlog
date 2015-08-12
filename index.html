@@ -306,18 +306,18 @@
 </code></pre>
 </li>
 <li><p>切割字符串 string.sub()</p>
-<pre><code>local str = <span class="string">"hellocharly"</span>
-local s = string.<span class="function"><span class="title">sub</span><span class="params">(str,<span class="number">2</span>,-<span class="number">1</span>)</span></span>
-<span class="function"><span class="title">print</span><span class="params">(<span class="string">"1.the sub string is "</span> .. s)</span></span> -- 结果为 ellocharly 
+<pre><code>local str = <span class="string">"hellocharly"</span>  
+local s = string.<span class="function"><span class="title">sub</span><span class="params">(str,<span class="number">2</span>,-<span class="number">1</span>)</span></span>  
+<span class="function"><span class="title">print</span><span class="params">(<span class="string">"1.the sub string is "</span> .. s)</span></span> -- 结果为 ellocharly  
 </code></pre><p> <em>我们也可以使用下面的方式来调用sub()方法</em></p>
 <pre><code>s = str:<span class="function"><span class="title">sub</span><span class="params">(<span class="number">2</span>,-<span class="number">1</span>)</span></span>
 <span class="function"><span class="title">print</span><span class="params">(<span class="string">"2.the sub string is "</span> .. s)</span></span> -- 结果为 ellocharly 
 </code></pre></li>
 <li><p>ascii码与字母之间的转化</p>
-<pre><code><span class="function"><span class="title">print</span><span class="params">(<span class="string">"ascii 97 is "</span> .. string.char(<span class="number">97</span>)</span></span>) --<span class="tag">a</span> 
-<span class="function"><span class="title">print</span><span class="params">(<span class="string">"a to ascii is "</span> .. string.byte(<span class="string">"a"</span>)</span></span>) --<span class="number">97</span>
-<span class="function"><span class="title">print</span><span class="params">(<span class="string">"abc to ascii is "</span> .. string.byte(<span class="string">"abc"</span>)</span></span>) -- <span class="number">97</span> 
-<span class="function"><span class="title">print</span><span class="params">(<span class="string">"abc -1 index to ascii is "</span> .. string.byte(<span class="string">"abc"</span>,-<span class="number">1</span>)</span></span>)
+<pre><code><span class="function"><span class="title">print</span><span class="params">(<span class="string">"ascii 97 is "</span> .. string.char(<span class="number">97</span>)</span></span>) --<span class="tag">a</span>   
+<span class="function"><span class="title">print</span><span class="params">(<span class="string">"a to ascii is "</span> .. string.byte(<span class="string">"a"</span>)</span></span>) --<span class="number">97</span>  
+<span class="function"><span class="title">print</span><span class="params">(<span class="string">"abc to ascii is "</span> .. string.byte(<span class="string">"abc"</span>)</span></span>) -- <span class="number">97</span>   
+<span class="function"><span class="title">print</span><span class="params">(<span class="string">"abc -1 index to ascii is "</span> .. string.byte(<span class="string">"abc"</span>,-<span class="number">1</span>)</span></span>)  
  —- 结果为<span class="number">99</span>
 </code></pre><p> <strong>注意 string.byte传入的是一个字符串，传入一个字符是非法的</strong><br> <em>从lua5.1开始string.byte 可以接受三个值例如：</em></p>
 <pre><code><span class="built_in">print</span>(<span class="typename">string</span>.<span class="typename">byte</span>(<span class="string">"abc"</span>,<span class="number">1</span>,<span class="number">2</span>)) -- <span class="number">97</span>, <span class="number">98</span> 
