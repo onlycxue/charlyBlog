@@ -304,13 +304,12 @@
  <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> str = <span class="string">"helloWorld"</span></span><br><span class="line"><span class="keyword">local</span> len = <span class="built_in">string</span>.len(str)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"the length is "</span> .. len)</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>切割字符串 string.sub()</p>
-<pre><code>local str = <span class="string">"hellocharly"</span>  
-local s = string.<span class="function"><span class="title">sub</span><span class="params">(str,<span class="number">2</span>,-<span class="number">1</span>)</span></span>  
-<span class="function"><span class="title">print</span><span class="params">(<span class="string">"1.the sub string is "</span> .. s)</span></span> -- 结果为 ellocharly  
-</code></pre><p> <em>我们也可以使用下面的方式来调用sub()方法</em></p>
-<pre><code>s = str:<span class="function"><span class="title">sub</span><span class="params">(<span class="number">2</span>,-<span class="number">1</span>)</span></span>
-<span class="function"><span class="title">print</span><span class="params">(<span class="string">"2.the sub string is "</span> .. s)</span></span> -- 结果为 ellocharly 
-</code></pre></li>
+ <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> str = <span class="string">"hellocharly"</span></span><br><span class="line"><span class="keyword">local</span> s = <span class="built_in">string</span>.sub(str,<span class="number">2</span>,-<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"1.the sub string is "</span> .. s) <span class="comment">-- 结果为 ellocharly</span></span><br></pre></td></tr></table></figure>
+<p> <em>我们也可以使用下面的方式来调用sub()方法</em></p>
+<pre><code class="lua">s = str:sub(<span class="number">2</span>,-<span class="number">1</span>)
+<span class="built_in">print</span>(<span class="string">"2.the sub string is "</span> .. s) <span class="comment">-- 结果为 ellocharly</span>
+</code></pre>
+</li>
 <li><p>ascii码与字母之间的转化</p>
 <pre><code><span class="function"><span class="title">print</span><span class="params">(<span class="string">"ascii 97 is "</span> .. string.char(<span class="number">97</span>)</span></span>) --<span class="tag">a</span>   
 <span class="function"><span class="title">print</span><span class="params">(<span class="string">"a to ascii is "</span> .. string.byte(<span class="string">"a"</span>)</span></span>) --<span class="number">97</span>  
