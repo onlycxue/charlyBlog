@@ -25,7 +25,7 @@ trigonometric functions
 正弦函数 math.sin(math.pi/6) --结果为 0.5
 余弦函数 math.cos(math.pi/3) --结果为 0.5
 正切函数 math.tan(math.">
-<meta property="og:updated_time" content="2015-08-12T14:52:50.000Z">
+<meta property="og:updated_time" content="2015-08-12T14:59:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lua标准库的使用">
 <meta name="twitter:description" content="Lua math 库rounding functions
@@ -278,7 +278,51 @@ trigonometric functions
 <li>测量字符串的长度 string.len()<pre><code><span class="built_in">local</span> str = <span class="string">"helloWorld"</span>     
 <span class="built_in">local</span> <span class="built_in">len</span> = <span class="keyword">string</span>.<span class="built_in">len</span>(str)
 print(<span class="string">"the length is "</span> .. <span class="built_in">len</span>)  
-</code></pre>2.</li>
+</code></pre></li>
+<li><p>切割字符串 string.sub()</p>
+<pre><code>local str = <span class="string">"hellocharly"</span>
+local s = string.<span class="function"><span class="title">sub</span><span class="params">(str,<span class="number">2</span>,-<span class="number">1</span>)</span></span>
+<span class="function"><span class="title">print</span><span class="params">(<span class="string">"1.the sub string is "</span> .. s)</span></span> -- 结果为 ellocharly 
+</code></pre><p> <em>我们也可以使用下面的方式来调用sub()方法</em></p>
+<pre><code>s = str:<span class="function"><span class="title">sub</span><span class="params">(<span class="number">2</span>,-<span class="number">1</span>)</span></span>
+<span class="function"><span class="title">print</span><span class="params">(<span class="string">"2.the sub string is "</span> .. s)</span></span> -- 结果为 ellocharly 
+</code></pre></li>
+<li><p>ascii码与字母之间的转化</p>
+<pre><code><span class="function"><span class="title">print</span><span class="params">(<span class="string">"ascii 97 is "</span> .. string.char(<span class="number">97</span>)</span></span>) --<span class="tag">a</span> 
+<span class="function"><span class="title">print</span><span class="params">(<span class="string">"a to ascii is "</span> .. string.byte(<span class="string">"a"</span>)</span></span>) --<span class="number">97</span>
+<span class="function"><span class="title">print</span><span class="params">(<span class="string">"abc to ascii is "</span> .. string.byte(<span class="string">"abc"</span>)</span></span>) -- <span class="number">97</span> 
+<span class="function"><span class="title">print</span><span class="params">(<span class="string">"abc -1 index to ascii is "</span> .. string.byte(<span class="string">"abc"</span>,-<span class="number">1</span>)</span></span>)
+ —- 结果为<span class="number">99</span>
+</code></pre><p> <strong>注意 string.byte传入的是一个字符串，传入一个字符是非法的</strong><br> <em>从lua5.1开始string.byte 可以接受三个值例如：</em></p>
+<pre><code><span class="built_in">print</span>(<span class="typename">string</span>.<span class="typename">byte</span>(<span class="string">"abc"</span>,<span class="number">1</span>,<span class="number">2</span>)) -- <span class="number">97</span>, <span class="number">98</span> 
+</code></pre><p> <em>将多个ascii码转为字符串</em></p>
+<pre><code><span class="keyword">local</span> t = {<span class="number">97</span>,<span class="number">98</span>,<span class="number">99</span>}
+<span class="keyword">local</span> str = <span class="built_in">string</span>.char(<span class="built_in">table</span>.<span class="built_in">unpack</span>(t))
+<span class="built_in">print</span>(<span class="string">"str is "</span> ..str) 
+</code></pre><p> <strong> 这种方法不是对所有长度的字符串都有效的，长度不能超过1M</strong></p>
+</li>
+<li><p>string.format() 函数</p>
+<p> 有点类似c 标准库的 printf 函数使用如下：</p>
+<pre><code><span class="keyword">print</span>(string.<span class="keyword">format</span>(<span class="string">"pi = <span class="variable">%.</span>4f"</span>,math.pi))
+<span class="keyword">local</span> d,<span class="keyword">m</span>,<span class="keyword">y</span> = <span class="number">5</span>,<span class="number">11</span>,<span class="number">1990</span>
+<span class="keyword">print</span>(string.<span class="keyword">format</span>(<span class="string">"<span class="variable">%02d</span>/<span class="variable">%02d</span>/<span class="variable">%04d</span>"</span>,d,<span class="keyword">m</span>,<span class="keyword">y</span>))
+
+<span class="keyword">local</span> tag , title = <span class="string">"h1"</span>,<span class="string">"a title"</span>
+<span class="keyword">print</span>(string.<span class="keyword">format</span>(<span class="string">"\&lt;<span class="variable">%s</span>\&gt;<span class="variable">%s</span>\&lt;/<span class="variable">%s</span>\&gt;"</span>,tag,title,tag)) 
+</code></pre></li>
+<li><p>string.find()<br> 用来查找字符串中是否包含某个字符串，如果匹配成功将会返回两个值，匹配开始的index，和 匹配结束的index 如果没有发现，将返回nil</p>
+<pre><code>local s = <span class="string">"hello world"</span>
+<span class="tag">i</span>,j = string.<span class="function"><span class="title">find</span><span class="params">(s,<span class="string">"hello"</span>)</span></span>
+<span class="function"><span class="title">print</span><span class="params">(i,j)</span></span>
+<span class="function"><span class="title">print</span><span class="params">(string.sub(s,i,j)</span></span>)
+
+<span class="function"><span class="title">print</span><span class="params">(string.find(s,<span class="string">"world"</span>)</span></span>)
+<span class="tag">i</span>,j = string.<span class="function"><span class="title">find</span><span class="params">(s,<span class="string">"l"</span>)</span></span>
+<span class="function"><span class="title">print</span><span class="params">(i,j)</span></span>
+<span class="function"><span class="title">print</span><span class="params">(string.find(s,<span class="string">"lll"</span>)</span></span>)
+</code></pre><p> string.find()还有第三个参数表示从什么位置开始查找</p>
+<pre><code>print<span class="list">(<span class="keyword">string</span>.find<span class="list">(<span class="keyword">s</span>,<span class="string">"l"</span>,<span class="number">5</span>)</span>)</span> -- <span class="number">10</span> 
+</code></pre></li>
 </ol>
 
       
@@ -288,6 +332,15 @@ print(<span class="string">"the length is "</span> .. <span class="built_in">len
   
     
 <nav id="article-nav">
+  
+    <a href="/2015/08/12/常用软件的key/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          常用软件的key
+        
+      </div>
+    </a>
   
   
     <a href="/2015/07/19/关于快速使用markdown编辑文档/" id="article-nav-older" class="article-nav-link-wrap">
