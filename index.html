@@ -248,12 +248,20 @@
 </li>
 </ol>
 <hr>
-<h4 id="运算符">运算符</h4><p>php的运算符是比较多的相对于其他语言，下面通过代码看一下多在哪里。</p>
+<h4 id="运算符">运算符</h4><p>php的运算符是比较多的相对于其他语言。</p>
 <ol>
 <li><p>逻辑运算符</p>
  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$p</span> = <span class="number">6</span> <span class="keyword">or</span> <span class="number">0</span>; </span><br><span class="line">var_dump(<span class="variable">$p</span>); <span class="comment">// 6</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$p</span> = <span class="number">6</span> || <span class="number">0</span>; </span><br><span class="line">var_dump(<span class="variable">$p</span>); <span class="comment">//true </span></span><br><span class="line"></span><br><span class="line"><span class="variable">$q</span> = <span class="number">0</span> &amp;&amp; <span class="number">5</span>;</span><br><span class="line">var_dump(<span class="variable">$q</span>); <span class="comment">//false</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$q</span> = <span class="number">0</span> <span class="keyword">and</span> <span class="number">5</span>;</span><br><span class="line">var_dump(<span class="variable">$q</span>); <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>是不是惊呆了，是的你没看错，php也有lua那一套逻辑运算符(or、and) 用法和lua类似。</p>
+</blockquote>
+</li>
+<li><p>比较运算符</p>
+<pre><code class="php"><span class="keyword">echo</span> <span class="number">1</span> == <span class="string">"1"</span> ? <span class="string">"true\n"</span> : <span class="string">"false\n"</span>; <span class="comment">// true</span>
+<span class="keyword">echo</span> <span class="number">1</span> === <span class="string">"1"</span> ? <span class="string">"true\n"</span> : <span class="string">"false\n"</span>; <span class="comment">//false</span>
+</code></pre>
+<blockquote>
+<p>不等于的比较运算符(!=  !==)和上面相似， == 属于弱比较(内容相同就为true,不考虑变量类型)而 === 属于强比较(不仅要求内容相同,而且类型也要相同才能为true).</p>
 </blockquote>
 </li>
 </ol>
