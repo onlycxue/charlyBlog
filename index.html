@@ -228,16 +228,17 @@
 </li>
 <li><p>引用赋值</p>
  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name_3</span> = <span class="string">'小五'</span>;</span><br><span class="line"><span class="variable">$name_4</span> = &amp;<span class="variable">$name_3</span>;</span><br><span class="line"><span class="variable">$name_4</span> = <span class="string">'小六'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$name_3</span>; <span class="comment">//小六</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
 <blockquote>
 <p>这里的引用赋值和c++类似，相当于一个变量的别名。</p>
-<ol>
-<li>可变变量 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$a</span> = <span class="string">'hello'</span>;</span><br><span class="line"><span class="variable">$$a</span> = <span class="string">'world'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"$a $&#123;$a&#125; "</span> . <span class="string">"\n"</span> ;<span class="comment">//hello world</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"$a $hello"</span> . <span class="string">"\n"</span> ;<span class="comment">//hello world</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'$a $hello'</span> . <span class="string">"\n"</span> ;<span class="comment">//$a $hello</span></span><br></pre></td></tr></table></figure>
+</blockquote>
 </li>
-</ol>
+<li><p>可变变量</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$a</span> = <span class="string">'hello'</span>;</span><br><span class="line"><span class="variable">$$a</span> = <span class="string">'world'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"$a $&#123;$a&#125; "</span> . <span class="string">"\n"</span> ;<span class="comment">//hello world</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"$a $hello"</span> . <span class="string">"\n"</span> ;<span class="comment">//hello world</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'$a $hello'</span> . <span class="string">"\n"</span> ;<span class="comment">//$a $hello</span></span><br></pre></td></tr></table></figure>
+<blockquote>
 <p>单引号和双引号在php中处理的结果是不同的,双引号的内容可以被解释而且替换而单引号的内容会认为是普通字符</p>
 </blockquote>
+</li>
+</ol>
 
       
     </div>
