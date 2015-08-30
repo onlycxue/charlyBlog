@@ -192,6 +192,80 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-php入门实践" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/30/php入门实践/" class="article-date">
+  	<time datetime="2015-08-30T02:41:11.000Z" itemprop="datePublished">2015-08-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/30/php入门实践/">php入门实践</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="为什么开始">为什么开始</h4><blockquote>
+<p>一直在做前端相关的工作，我对后端一无所知，一直想找个机会去了解一下后端，正好现在的游戏项目后端一直没有合适的人选，项目上不太忙了就抽出时间看一下php。我学习php大概的思路是先花一周到两周的时间去熟悉php基础，然后在结合一下开源的php项目再做深入的学习。</p>
+</blockquote>
+<h5 id="变量和赋值">变量和赋值</h5><p>php有8种基本类型。<br>四种标量类型：boolean(布尔类型)、integer(整型)、float(浮点型)、string(字符串)<br>两种复合类型：array(数组)、object(对象)<br>两种特殊的类型: resource(资源)、NULL<br>然而在实际使用php我们不用像c++ ,java 那样静态的去声明变量，php会根据赋的值自动推导类型</p>
+<ol>
+<li><p>普通赋值</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name_1</span> = <span class="string">'张三'</span>;</span><br><span class="line"><span class="variable">$name_2</span> = <span class="variable">$name_1</span>;</span><br><span class="line"><span class="variable">$name_1</span> = <span class="string">'李四'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$name_2</span>; <span class="comment">// 张三</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>引用赋值</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name_3</span> = <span class="string">'小五'</span>;</span><br><span class="line"><span class="variable">$name_4</span> = &amp;<span class="variable">$name_3</span>;</span><br><span class="line"><span class="variable">$name_4</span> = <span class="string">'小六'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$name_3</span>; <span class="comment">//小六</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>这里的引用赋值和c++类似，相当于一个变量的别名。</p>
+<ol>
+<li>可变变量 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$a</span> = <span class="string">'hello'</span>;</span><br><span class="line"><span class="variable">$$a</span> = <span class="string">'world'</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">"$a $&#123;$a&#125; "</span> . <span class="string">"\n"</span> ;<span class="comment">//hello world</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"$a $hello"</span> . <span class="string">"\n"</span> ;<span class="comment">//hello world</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">'$a $hello'</span> . <span class="string">"\n"</span> ;<span class="comment">//$a $hello</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>单引号和双引号在php中处理的结果是不同的,双引号的内容可以被解释而且替换而单引号的内容会认为是普通字符</p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/php/">php</a>
+	</div>
+
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+  
     <article id="post-常用软件的key" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
