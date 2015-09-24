@@ -17,7 +17,7 @@
 一直在做前端相关的工作，我对后端一无所知，一直想找个机会去了解一下后端，正好现在的游戏项目后端一直没有合适的人选，项目上不太忙了就抽出时间看一下php。我学习php大概的思路是先花一周到两周的时间去熟悉php基础，然后在结合一下开源的php项目再做深入的学习。
 
 变量和赋值php有8种基本类型。四种标量类型：boolean(布尔类型)、integer(整型)、float(浮点型)、st">
-<meta property="og:updated_time" content="2015-09-24T15:54:20.000Z">
+<meta property="og:updated_time" content="2015-09-24T15:56:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php入门实践">
 <meta name="twitter:description" content="为什么开始
@@ -284,14 +284,14 @@
 </ol>
 <h3 id="数组_array">数组 array</h3><p>array类型在php中是最常用到的，它的特点和lua的table很类似，php中的数组实际上是一个有序映射。映射是一种把values 关联到keys 的类型。此类型在很多方面做了优化，因此可以把它当成真正的数组，或列表(向量), 散列表(是映射的一种实现)，字典，集合，栈，队列，以及更多可能性。</p>
 <ol>
-<li>一个简单的array<pre><code class="php"><span class="variable">$array</span> = <span class="keyword">array</span>(
-    <span class="string">"foo"</span> =&gt; <span class="string">"bar"</span>,
-    <span class="string">"bar"</span> =&gt; <span class="string">"foo"</span>,
-);
-<span class="comment">// 自 php 5.4 起</span>
-<span class="variable">$array</span> = [
-    <span class="string">"foo"</span> =&gt; <span class="string">"bar"</span>,
-    <span class="string">"bar"</span> =&gt; <span class="string">"foo"</span>,
+<li>一个简单的array<pre><code class="php"><span class="variable">$array</span> = <span class="keyword">array</span>( 
+    <span class="string">"foo"</span> =&gt; <span class="string">"bar"</span>, 
+    <span class="string">"bar"</span> =&gt; <span class="string">"foo"</span>, 
+); 
+<span class="comment">// 自 php 5.4 起 </span>
+<span class="variable">$array</span> = [ 
+    <span class="string">"foo"</span> =&gt; <span class="string">"bar"</span>, 
+    <span class="string">"bar"</span> =&gt; <span class="string">"foo"</span>, 
 ];
 </code></pre>
 </li>
