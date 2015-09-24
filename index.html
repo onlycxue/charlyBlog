@@ -271,13 +271,8 @@
 <li><p>array的 key 可以是 integer 或者 string。 value 可以是任意类型。</p>
  <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$array</span> = <span class="keyword">array</span>[</span><br><span class="line">    <span class="number">1</span> =&gt; <span class="string">"a"</span>,</span><br><span class="line">	<span class="string">"1"</span> =&gt; <span class="string">"b"</span>,</span><br><span class="line">	<span class="number">1.5</span> =&gt; <span class="string">"c"</span>,</span><br><span class="line">	<span class="keyword">true</span>=&gt; <span class="string">"d"</span>,</span><br><span class="line">];</span><br><span class="line">print_r(<span class="variable">$array</span>);</span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="keyword">array</span>(<span class="number">1</span>) &#123;</span><br><span class="line">		[<span class="number">1</span>]=&gt;</span><br><span class="line">		string(<span class="number">1</span>) <span class="string">"d"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>是不是有点感觉很惊讶，让人琢磨不透，不要着急弄清php的array的覆盖规则就豁然开亮了。</p>
-<pre><code>a.包含有合法整形值的字符串会被转换为整型。
-b.浮点数也会被转换为整型。意味着其小数部分会被舍去。
-c.布尔类型也会被转为整型。即 键名为 <span class="keyword">true</span> 转为 <span class="number">1</span>，<span class="keyword">false</span> 转为 <span class="number">0.</span>
-d.Null会被转换为空串，即键名<span class="keyword">null</span> 实际会被存储为 “”.
-e.数组和对象不能作为键名。坚持这么做会导致警告 ：Illegal offset <span class="class"><span class="keyword">type</span> 。</span>
-</code></pre></blockquote>
+<p>是不是有点感觉很惊讶，让人琢磨不透，不要着急弄清php的array的覆盖规则就豁然开亮了。<br>a.包含有合法整形值的字符串会被转换为整型。<br>b.浮点数也会被转换为整型。意味着其小数部分会被舍去。<br>c.布尔类型也会被转为整型。即 键名为 true 转为 1，false 转为 0.<br>d.Null会被转换为空串，即键名null 实际会被存储为 “”.<br>e.数组和对象不能作为键名。坚持这么做会导致警告 ：Illegal offset type 。</p>
+</blockquote>
 </li>
 </ol>
 
