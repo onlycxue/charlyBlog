@@ -168,6 +168,108 @@
           
           
             
+              <a class="post-title-link" href="/2015/10/11/php入门实践（下）/" itemprop="url">
+                php入门实践（下）
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-10-11T15:03:50+08:00" content="2015-10-11">
+            2015-10-11
+          </time>
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/10/11/php入门实践（下）/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/10/11/php入门实践（下）/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody"><h3 id="写在前面">写在前面</h3><p>这里主要介绍一下php对文件的处理 、php的函数、以及php的面向对象。学习过程主要是先看书，然后用代码验证，最后<br>到现在的博客整理，写博客的目的主要为了方便日后的复习，和希望对像我一样菜鸟级别的程序猿有所帮助。</p>
+<h4 id="文件的操作">文件的操作</h4><p>对文件的操作过程大致都抽象3个步骤 1) 打开文件 , 2) 执行操作(读/写) , 3) 关闭文件。针对这几个操作php都做<br>比较好用的api。</p>
+<ol>
+<li><p>fopen()打开文件。</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$file</span> = fopen(<span class="string">"hello.txt"</span>,<span class="string">"w"</span>);</span><br><span class="line"><span class="variable">$file</span> = fopen(<span class="string">"../hello.txt"</span>,<span class="string">"r"</span>);</span><br><span class="line"><span class="variable">$file</span> = fopen(<span class="string">"http://www.charlygame.com"</span>,<span class="string">"a"</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>php打开的文件可以是相对路径或绝对路径，也可以是网络文件(http,http和ftp)。打开方式和c语言的类似。</p>
+</blockquote>
+</li>
+<li><p>fclose()关闭文件</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$file</span> = fopen(<span class="string">"hello.txt"</span>,<span class="string">"w"</span>)</span><br><span class="line"><span class="comment">//执行一些代码</span></span><br><span class="line">fclose()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fwrite()写入函数</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$file</span> = fopen(<span class="string">"hello.txt"</span>,<span class="string">"w"</span>);</span><br><span class="line">fwrite(<span class="variable">$file</span>,<span class="string">"hellocharly\n"</span>);</span><br><span class="line">fwrite(<span class="variable">$file</span>,<span class="string">"hellocxue\n"</span>);</span><br><span class="line">fwrite(<span class="variable">$file</span>,<span class="string">"hellozhanglei\n"</span>,<span class="number">10</span>); <span class="comment">//写入时10个字符前面的字符串长度</span></span><br><span class="line">fclose(<span class="variable">$file</span>);</span><br><span class="line"><span class="comment">//文件内容</span></span><br><span class="line"><span class="comment">//hellocharly</span></span><br><span class="line"><span class="comment">//hellocxue</span></span><br><span class="line"><span class="comment">//hellozhang</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fread()读取函数</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$file</span> = fopen(<span class="string">"hello.txt"</span>,<span class="string">"r"</span>);</span><br><span class="line"><span class="variable">$content</span> = fread(<span class="variable">$file</span>,filesize(<span class="string">"hello.txt"</span>)); <span class="comment">//第二参数指定读长度</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$content</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fgets()按行读取函数</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$file</span> = fopen(<span class="string">"hello.txt"</span>,<span class="string">"r"</span>)</span><br><span class="line"><span class="keyword">echo</span> fgets(<span class="variable">$file</span>,<span class="number">50</span>);</span><br><span class="line"><span class="keyword">echo</span> fgets(<span class="variable">$file</span>)</span><br><span class="line">fclose(<span class="variable">$file</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>fgets()函数是按行读取，优先查找换行符“\n”，也就是说如果定义了读取字节的个数num,如果’\n’<br> 的位置在num之前会返回’\n’之前的内容，否则返回num个字符</p>
+</blockquote>
+</li>
+<li><p>fgetss()与 fgets()的不同之处是可以过滤字符串中php和html的标记符</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 文件名称 sample.php</span><br><span class="line">&lt;html&gt;&lt;body&gt;</span><br><span class="line">	&lt;p&gt;Welcome! Today is the <span class="preprocessor">&lt;?php</span> echo(date('jS')); <span class="preprocessor">?&gt;</span> of <span class="preprocessor">&lt;?</span>= date('F'); <span class="preprocessor">?&gt;</span>.&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;&lt;/html&gt;</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$handle</span> = fopen(<span class="string">"sample.php"</span>,<span class="string">"r"</span>);</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$handle</span>) &#123;</span><br><span class="line">	<span class="keyword">while</span>(!feof(<span class="variable">$handle</span>))&#123;</span><br><span class="line">	<span class="variable">$buffer</span> = fgetss(<span class="variable">$handle</span>,<span class="number">4096</span>);</span><br><span class="line">	<span class="keyword">echo</span> <span class="variable">$buffer</span>;</span><br><span class="line">&#125;</span><br><span class="line">fclose(<span class="variable">$handle</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*	输出内容</span><br><span class="line">	 Welcome! Today is the  of .</span><br><span class="line">	 Text outside of the HTML block.</span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>fgetcsv()用来 读取csv格式的文件并转为array</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 文件名称 test.php</span><br><span class="line">	hello-world!hello-world!hello!</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$fp</span> = fopen(<span class="string">"test.txt"</span>,<span class="string">"r"</span>);</span><br><span class="line"><span class="variable">$order</span> = fgetcsv(<span class="variable">$fp</span>,<span class="number">100</span>,<span class="string">"-"</span>);</span><br><span class="line">var_dump(<span class="variable">$order</span>);</span><br><span class="line"><span class="comment">/* 输出内容</span><br><span class="line">array(6) &#123;</span><br><span class="line">			[0]=&gt;string(5) "hello"</span><br><span class="line">			[1]=&gt;string(11) "world!hello"</span><br><span class="line">			[2]=&gt;string(11) "world!hello"</span><br><span class="line">&#125;</span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>还有几个便捷的函数一定要说，直接上代码</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$contents</span> = file_get_contents(<span class="string">"http://www.shopnc.net"</span>);</span><br><span class="line">file_put_contents(<span class="string">"text.txt"</span>,<span class="variable">$contents</span>);</span><br><span class="line"><span class="comment">//追加</span></span><br><span class="line">file_put_contents(<span class="string">"text.txt"</span>,<span class="string">"hello Charly I am here"</span>,FILE_APPEND);</span><br><span class="line"><span class="comment">//copy 文件的复制</span></span><br><span class="line">copy(<span class="string">"text.txt"</span>,<span class="string">"dest.txt"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
               <a class="post-title-link" href="/2015/08/30/php入门实践/" itemprop="url">
                 php入门实践(上)
               </a>
@@ -869,7 +971,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
