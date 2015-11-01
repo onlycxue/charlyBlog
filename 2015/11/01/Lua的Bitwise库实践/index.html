@@ -39,19 +39,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="写在前面这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。关于lua的Bitwise库table库 和 operating System库早在前两周基本上已经实践了完了(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用
-进入正题lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印16">
+<meta name="description" content="写在前面这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。关于lua的Bitwise库 table库 和 operating System库早在前两周基本上已经实践了完了(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用
+进入正题lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Lua的Bitwise库实践">
 <meta property="og:url" content="http://yoursite.com/2015/11/01/Lua的Bitwise库实践/index.html">
 <meta property="og:site_name" content="charlygame">
-<meta property="og:description" content="写在前面这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。关于lua的Bitwise库table库 和 operating System库早在前两周基本上已经实践了完了(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用
-进入正题lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印16">
-<meta property="og:updated_time" content="2015-11-01T10:43:52.000Z">
+<meta property="og:description" content="写在前面这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。关于lua的Bitwise库 table库 和 operating System库早在前两周基本上已经实践了完了(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用
+进入正题lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印1">
+<meta property="og:updated_time" content="2015-11-01T10:46:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lua的Bitwise库实践">
-<meta name="twitter:description" content="写在前面这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。关于lua的Bitwise库table库 和 operating System库早在前两周基本上已经实践了完了(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用
-进入正题lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印16">
+<meta name="twitter:description" content="写在前面这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。关于lua的Bitwise库 table库 和 operating System库早在前两周基本上已经实践了完了(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用
+进入正题lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印1">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -205,8 +205,8 @@
       
 
       
-        <span itemprop="articleBody"><h4 id="写在前面">写在前面</h4><p>这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。关于lua的Bitwise库<br>table库 和 operating System库早在前两周基本上已经实践了完了(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用</p>
-<h4 id="进入正题">进入正题</h4><p>lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印<br>16进制的pritx()函数如下：</p>
+        <span itemprop="articleBody"><h4 id="写在前面">写在前面</h4><p>这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。<br>关于lua的Bitwise库 table库 和 operating System库早在前两周基本上已经实践了完了<br>(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用</p>
+<h4 id="进入正题">进入正题</h4><p>lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印<br>16进制的printx()函数如下：</p>
 <pre><code><span class="comment"><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printx</span> <span class="params">(x)</span></span></span><br><span class="line">	<span class="built_in">print</span>(<span class="built_in">string</span>.format(<span class="string">"0x%X"</span>,x))</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></span>
 </code></pre><ol>
 <li><p>与其它语言类似lua的位操作无例外也是 按位与、位或、位非，异或,如下代码</p>
