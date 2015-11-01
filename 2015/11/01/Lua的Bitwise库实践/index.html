@@ -30,7 +30,7 @@
 
 
 
-  <meta name="keywords" content="闲谈," />
+  <meta name="keywords" content="lua," />
 
 
 
@@ -39,19 +39,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="之前写博客用的wordpress ＋ 阿里云服务器 每个月要交60大洋，还是满贵的，这几天一直关注hexo 再加上一直喜欢github 于是，把博客牵过来了，希望坚持自己写博客的习惯。
-今天hexo博客大体上搭建完成，后续会慢慢加入一些插件，一次搭出符合自己心意的网站真是太难了，来日方长漫漫折腾吧。">
+<meta name="description" content="写在前面这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。关于lua的Bitwise库table库 和 operating System库早在前两周基本上已经实践了完了(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用
+进入正题lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印16">
 <meta property="og:type" content="article">
-<meta property="og:title" content="加油">
-<meta property="og:url" content="http://yoursite.com/2015/07/19/加油/index.html">
+<meta property="og:title" content="Lua的Bitwise库实践">
+<meta property="og:url" content="http://yoursite.com/2015/11/01/Lua的Bitwise库实践/index.html">
 <meta property="og:site_name" content="charlygame">
-<meta property="og:description" content="之前写博客用的wordpress ＋ 阿里云服务器 每个月要交60大洋，还是满贵的，这几天一直关注hexo 再加上一直喜欢github 于是，把博客牵过来了，希望坚持自己写博客的习惯。
-今天hexo博客大体上搭建完成，后续会慢慢加入一些插件，一次搭出符合自己心意的网站真是太难了，来日方长漫漫折腾吧。">
-<meta property="og:updated_time" content="2015-10-11T06:58:00.000Z">
+<meta property="og:description" content="写在前面这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。关于lua的Bitwise库table库 和 operating System库早在前两周基本上已经实践了完了(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用
+进入正题lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印16">
+<meta property="og:updated_time" content="2015-11-01T10:43:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="加油">
-<meta name="twitter:description" content="之前写博客用的wordpress ＋ 阿里云服务器 每个月要交60大洋，还是满贵的，这几天一直关注hexo 再加上一直喜欢github 于是，把博客牵过来了，希望坚持自己写博客的习惯。
-今天hexo博客大体上搭建完成，后续会慢慢加入一些插件，一次搭出符合自己心意的网站真是太难了，来日方长漫漫折腾吧。">
+<meta name="twitter:title" content="Lua的Bitwise库实践">
+<meta name="twitter:description" content="写在前面这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。关于lua的Bitwise库table库 和 operating System库早在前两周基本上已经实践了完了(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用
+进入正题lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印16">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -61,7 +61,7 @@
   };
 </script>
 
-  <title> 加油 | charlygame </title>
+  <title> Lua的Bitwise库实践 | charlygame </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -170,7 +170,7 @@
           
           
             
-              加油
+              Lua的Bitwise库实践
             
           
         </h1>
@@ -179,34 +179,19 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-07-19T11:32:54+08:00" content="2015-07-19">
-            2015-07-19
+          <time itemprop="dateCreated" datetime="2015-11-01T16:16:58+08:00" content="2015-11-01">
+            2015-11-01
           </time>
         </span>
 
-        
-          <span class="post-category" >
-            &nbsp; | &nbsp; 分类于
-            
-              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                <a href="/categories/闲想杂谈/" itemprop="url" rel="index">
-                  <span itemprop="name">闲想杂谈</span>
-                </a>
-              </span>
-
-              
-              
-
-            
-          </span>
         
 
         
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/07/19/加油/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/07/19/加油/" itemprop="commentsCount"></span>
+              <a href="/2015/11/01/Lua的Bitwise库实践/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/01/Lua的Bitwise库实践/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -220,9 +205,39 @@
       
 
       
-        <span itemprop="articleBody"><p>之前写博客用的wordpress ＋ 阿里云服务器 每个月要交60大洋，还是满贵的，这几天一直关注hexo 再加上一直喜欢github 于是，把博客牵过来了，希望坚持自己写博客的习惯。</p>
-<p>今天hexo博客大体上搭建完成，后续会慢慢加入一些插件，一次搭出符合自己心意的网站真是太难了，来日方长漫漫折腾吧。</p>
-</span>
+        <span itemprop="articleBody"><h4 id="写在前面">写在前面</h4><p>这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。关于lua的Bitwise库<br>table库 和 operating System库早在前两周基本上已经实践了完了(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用</p>
+<h4 id="进入正题">进入正题</h4><p>lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印<br>16进制的pritx()函数如下：</p>
+<pre><code><span class="comment"><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printx</span> <span class="params">(x)</span></span></span><br><span class="line">	<span class="built_in">print</span>(<span class="built_in">string</span>.format(<span class="string">"0x%X"</span>,x))</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></span>
+</code></pre><ol>
+<li><p>与其它语言类似lua的位操作无例外也是 按位与、位或、位非，异或,如下代码</p>
+ <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">printx(bit32.band(<span class="number">0xdf</span>,<span class="number">0xfd</span>)) <span class="comment">--0xdd</span></span><br><span class="line">printx(bit32.bor(<span class="number">0xdd</span>,<span class="number">0x0d</span>)) <span class="comment">--0xdd</span></span><br><span class="line">printx(bit32.bxor(<span class="number">0xd0</span>,<span class="number">0xff</span>)) <span class="comment">-- 0x2f</span></span><br><span class="line">printx(bit32.bnot(<span class="number">0</span>)) <span class="comment">--0xffffffff</span></span><br></pre></td></tr></table></figure>
+<p> 另外这些函数可以接受任意参数如下</p>
+ <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">printx(bit32.bor(<span class="number">0xa</span>,<span class="number">0xa0</span>,<span class="number">0xa00</span>))  <span class="comment">--0xaaa</span></span><br><span class="line">printx(bit32.band(<span class="number">0xffa</span>,<span class="number">0xfaf</span>,<span class="number">0xaff</span>)) <span class="comment">-- 0xaaa</span></span><br><span class="line">printx(bit32.bxor(<span class="number">0</span>,<span class="number">0xaaa</span>,<span class="number">0</span>)) <span class="comment">--0xaaa</span></span><br><span class="line">printx(bit32.bor()) <span class="comment">-- 0xaaa</span></span><br><span class="line">printx(bit32.band()) <span class="comment">-- 0xffffffff</span></span><br><span class="line">printx(bit32.bxor()) <span class="comment">-- 0x0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>位的移动</p>
+  <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">	printx(bit32.rshift(<span class="number">0x01</span>,<span class="number">2</span>)) <span class="comment">--0</span></span><br><span class="line">printx(bit32.lshift(<span class="number">0x01</span>,<span class="number">2</span>)) <span class="comment">--4</span></span><br><span class="line">printx(bit32.rshift(-<span class="number">1</span>,<span class="number">28</span>)) <span class="comment">--0xf</span></span><br><span class="line">printx(bit32.arshift(-<span class="number">1</span>,<span class="number">28</span>)) <span class="comment">-- 0xffffffff</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>需要注意的是arshift是算数右移，移出来的位用1填充</p>
+</blockquote>
+<ol>
+<li><p>旋转移位<br>旋转移位顾名思义就是移位的时候是一个闭合回路，移出来的位回往另一侧填充。如下：</p>
+ <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">printx(bit32.lrotate(<span class="number">0xABCDEF01</span>,-<span class="number">4</span>)) <span class="comment">--&gt; 0x1abcdef0</span></span><br><span class="line">printx(bit32.lrotate(<span class="number">0xABCDEF01</span>,-<span class="number">36</span>))  <span class="comment">--&gt;0x1abcdef0</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>btest函数与band函数类似 不过返回布尔类型 如下：</p>
+ <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(bit32.btest(<span class="number">12</span>,<span class="number">1</span>)) <span class="comment">--&gt; false</span></span><br><span class="line"><span class="built_in">print</span>(bit32.btest(<span class="number">13</span>,<span class="number">1</span>)) <span class="comment">--&gt; true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>extract函数表示取出多少位<br> bit32.extract(x,f,w) 表示返回wbits 从 f 个bit 开始取 w 个位</p>
+ <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">printx(bit32.extract(<span class="number">0xABCDEF01</span>,<span class="number">4</span>,<span class="number">8</span>)) <span class="comment">--&gt;0xf0</span></span><br><span class="line">printx(bit32.extract(<span class="number">0xABCDEF01</span>,<span class="number">20</span>,<span class="number">12</span>))  <span class="comment">--&gt;0xABC</span></span><br><span class="line">printx(bit32.extract(<span class="number">0xABCDEF01</span>,<span class="number">0</span>,<span class="number">12</span>))   <span class="comment">--&gt;0xf01</span></span><br><span class="line"><span class="comment">--另外这个w计数参数取值是0-31，如果没有提供默认取1位</span></span><br><span class="line">printx(bit32.extract(<span class="number">0x0000000F</span>,<span class="number">0</span>)) <span class="comment">--&gt;0x1</span></span><br><span class="line">printx(bit32.extract(<span class="number">0xF0000000</span>,<span class="number">31</span>))  <span class="comment">--&gt;0x1</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>replace函数故名思义是替换位<br> bit32.replace(x,r,f,w) 与 bit32.extract类似，表示从x的f位开始 取w个位 替换成r</p>
+ <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">printx(bit32.replace(<span class="number">0xABCDEF01</span>,<span class="number">0x55</span>,<span class="number">4</span>,<span class="number">8</span>)) <span class="comment">--&gt;0xabcde551 </span></span><br><span class="line">printx(bit32.replace(<span class="number">0xABCDEF01</span>,<span class="number">0x0</span>,<span class="number">4</span>,<span class="number">8</span>)) <span class="comment">--&gt;0xABCDE001</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="小尾巴">小尾巴</h5><pre><code>天色已暗，写东西的能力和速度有待提升。
+</code></pre><h5 id="参考书籍">参考书籍</h5><pre><code>《programming <span class="flow">in</span> Lua <span class="number">3</span><span class="built_in">rd</span> Edition》
+</code></pre></span>
       
     </div>
 
@@ -230,7 +245,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/闲谈/" rel="tag">#闲谈</a>
+            <a href="/tags/lua/" rel="tag">#lua</a>
           
         </div>
       
@@ -239,11 +254,11 @@
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/07/19/关于快速使用markdown编辑文档/" rel="prev">关于快速使用markdown编辑文档</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/10/11/php入门实践（下）/" rel="next">php入门实践（下）</a>
             
           </div>
         </div>
@@ -291,8 +306,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/07/19/加油/"
-                   data-title="加油" data-url="http://yoursite.com/2015/07/19/加油/">
+              <div class="ds-thread" data-thread-key="2015/11/01/Lua的Bitwise库实践/"
+                   data-title="Lua的Bitwise库实践" data-url="http://yoursite.com/2015/11/01/Lua的Bitwise库实践/">
               </div>
             
           </div>
@@ -374,7 +389,7 @@
           <div class="post-toc">
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进入正题"><span class="nav-number">2.</span> <span class="nav-text">进入正题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#小尾巴"><span class="nav-number">2.1.</span> <span class="nav-text">小尾巴</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考书籍"><span class="nav-number">2.2.</span> <span class="nav-text">参考书籍</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
