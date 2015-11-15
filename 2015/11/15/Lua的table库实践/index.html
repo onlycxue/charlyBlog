@@ -30,7 +30,7 @@
 
 
 
-  <meta name="keywords" content="lua," />
+  <meta name="keywords" content="Hexo,next" />
 
 
 
@@ -39,19 +39,22 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="写在前面这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。关于lua的Bitwise库 table库 和 operating System库早在前两周基本上已经实践了完了(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用
-进入正题lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印1">
+<meta name="description" content="写在前面今天更新了一下macOS 结果lua命令不能用了，想去官网下载一个重新编译一下结果官网也打不开。lua标准库中对table的操作
+比较简单，主要是 insert，remove，sort，concat。下面看一下如何使用。开始之前先写一个简单的调试table的函数如下：
+123456function tableDebug(t)	print(&quot;=========debug=======&quot;)	f">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lua的Bitwise库实践">
-<meta property="og:url" content="http://yoursite.com/2015/11/01/Lua的Bitwise库实践/index.html">
+<meta property="og:title" content="Lua的table库实践">
+<meta property="og:url" content="http://yoursite.com/2015/11/15/Lua的table库实践/index.html">
 <meta property="og:site_name" content="charlygame">
-<meta property="og:description" content="写在前面这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。关于lua的Bitwise库 table库 和 operating System库早在前两周基本上已经实践了完了(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用
-进入正题lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印1">
-<meta property="og:updated_time" content="2015-11-01T10:46:46.000Z">
+<meta property="og:description" content="写在前面今天更新了一下macOS 结果lua命令不能用了，想去官网下载一个重新编译一下结果官网也打不开。lua标准库中对table的操作
+比较简单，主要是 insert，remove，sort，concat。下面看一下如何使用。开始之前先写一个简单的调试table的函数如下：
+123456function tableDebug(t)	print(&quot;=========debug=======&quot;)	f">
+<meta property="og:updated_time" content="2015-11-15T04:23:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lua的Bitwise库实践">
-<meta name="twitter:description" content="写在前面这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。关于lua的Bitwise库 table库 和 operating System库早在前两周基本上已经实践了完了(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用
-进入正题lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印1">
+<meta name="twitter:title" content="Lua的table库实践">
+<meta name="twitter:description" content="写在前面今天更新了一下macOS 结果lua命令不能用了，想去官网下载一个重新编译一下结果官网也打不开。lua标准库中对table的操作
+比较简单，主要是 insert，remove，sort，concat。下面看一下如何使用。开始之前先写一个简单的调试table的函数如下：
+123456function tableDebug(t)	print(&quot;=========debug=======&quot;)	f">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -61,7 +64,7 @@
   };
 </script>
 
-  <title> Lua的Bitwise库实践 | charlygame </title>
+  <title> Lua的table库实践 | charlygame </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -170,7 +173,7 @@
           
           
             
-              Lua的Bitwise库实践
+              Lua的table库实践
             
           
         </h1>
@@ -179,8 +182,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-11-01T16:16:58+08:00" content="2015-11-01">
-            2015-11-01
+          <time itemprop="dateCreated" datetime="2015-11-15T10:23:26+08:00" content="2015-11-15">
+            2015-11-15
           </time>
         </span>
 
@@ -190,8 +193,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/11/01/Lua的Bitwise库实践/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/01/Lua的Bitwise库实践/" itemprop="commentsCount"></span>
+              <a href="/2015/11/15/Lua的table库实践/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/15/Lua的table库实践/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -205,37 +208,22 @@
       
 
       
-        <span itemprop="articleBody"><h4 id="写在前面">写在前面</h4><p>这周忙着赶游戏版本，每天早上学习一点lua的习惯并没有很好的坚持下来，下周一定要坚持下去。<br>关于lua的Bitwise库 table库 和 operating System库早在前两周基本上已经实践了完了<br>(内容比较少)，正好快忘了今天整理一下 Bitwise 库的使用</p>
-<h4 id="进入正题">进入正题</h4><p>lua的对位的操作的一直是个空缺，直到lua 5.2 版本。下面的练习我使用的是5.3版本。在开始之前先写一个打印<br>16进制的printx()函数如下：</p>
-<pre><code><span class="comment"><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printx</span> <span class="params">(x)</span></span></span><br><span class="line">	<span class="built_in">print</span>(<span class="built_in">string</span>.format(<span class="string">"0x%X"</span>,x))</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></span>
+        <span itemprop="articleBody"><h4 id="写在前面">写在前面</h4><p>今天更新了一下macOS 结果lua命令不能用了，想去官网下载一个重新编译一下结果官网也打不开。lua标准库中对table的操作</p>
+<h2 id="比较简单，主要是_insert，remove，sort，concat。下面看一下如何使用。">比较简单，主要是 insert，remove，sort，concat。下面看一下如何使用。</h2><p>开始之前先写一个简单的调试table的函数如下：</p>
+<pre><code><span class="comment"><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tableDebug</span><span class="params">(t)</span></span></span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"=========debug======="</span>)</span><br><span class="line">	<span class="keyword">for</span> _,v <span class="keyword">in</span> <span class="built_in">ipairs</span>(t) <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">print</span>(v)	</span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></span>
 </code></pre><ol>
-<li><p>与其它语言类似lua的位操作无例外也是 按位与、位或、位非，异或,如下代码</p>
- <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">printx(bit32.band(<span class="number">0xdf</span>,<span class="number">0xfd</span>)) <span class="comment">--0xdd</span></span><br><span class="line">printx(bit32.bor(<span class="number">0xdd</span>,<span class="number">0x0d</span>)) <span class="comment">--0xdd</span></span><br><span class="line">printx(bit32.bxor(<span class="number">0xd0</span>,<span class="number">0xff</span>)) <span class="comment">-- 0x2f</span></span><br><span class="line">printx(bit32.bnot(<span class="number">0</span>)) <span class="comment">--0xffffffff</span></span><br></pre></td></tr></table></figure>
-<p> 另外这些函数可以接受任意参数如下</p>
- <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">printx(bit32.bor(<span class="number">0xa</span>,<span class="number">0xa0</span>,<span class="number">0xa00</span>))  <span class="comment">--0xaaa</span></span><br><span class="line">printx(bit32.band(<span class="number">0xffa</span>,<span class="number">0xfaf</span>,<span class="number">0xaff</span>)) <span class="comment">-- 0xaaa</span></span><br><span class="line">printx(bit32.bxor(<span class="number">0</span>,<span class="number">0xaaa</span>,<span class="number">0</span>)) <span class="comment">--0xaaa</span></span><br><span class="line">printx(bit32.bor()) <span class="comment">-- 0xaaa</span></span><br><span class="line">printx(bit32.band()) <span class="comment">-- 0xffffffff</span></span><br><span class="line">printx(bit32.bxor()) <span class="comment">-- 0x0</span></span><br></pre></td></tr></table></figure>
+<li><p>Insert and Remove<br> insert函数使用格式如:<code>table.insert(t,p,v)</code> 其中t为将要操作的table，p为table中的位置(下标从1开始),v为要<br> 插入的值，使用方法如下：</p>
+ <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> t = &#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>&#125;</span><br><span class="line"><span class="built_in">table</span>.insert(t,<span class="number">1</span>,<span class="number">40</span>) <span class="comment">--40 10 20 30</span></span><br><span class="line"><span class="built_in">table</span>.insert(t,<span class="number">50</span>) <span class="comment">--40 10 20 30 50 默认插在table中的末尾</span></span><br></pre></td></tr></table></figure>
+<p> remove函数使用格式与insert函数类似 <code>table.remove(t,p)</code>删除指定位置p的值。使用方法如下：</p>
+ <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">		<span class="built_in">table</span>.remove(t) <span class="comment">-- 40 10 20 30</span></span><br><span class="line">		<span class="built_in">table</span>.remove(t,<span class="number">1</span>) <span class="comment">-- 10 20 30</span></span><br><span class="line">	``` </span><br><span class="line"><span class="number">2.</span> Sort 函数</span><br><span class="line">	一个非常有用的函数用来给<span class="built_in">table</span>做排序，使用方法如下：</span><br><span class="line">	```lua</span><br><span class="line">		<span class="keyword">local</span> lines = &#123;</span><br><span class="line">		luaH_set = <span class="number">10</span>,</span><br><span class="line">		luaH_get = <span class="number">24</span>,</span><br><span class="line">		luaH_present = <span class="number">48</span>,</span><br><span class="line">		&#125;</span><br><span class="line">		a = &#123;&#125;</span><br><span class="line">		<span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">pairs</span>(lines) <span class="keyword">do</span> a[#a+<span class="number">1</span>] = n <span class="keyword">end</span> <span class="comment">--取出键值，为键值排序</span></span><br><span class="line">		tableDebug(a)</span><br><span class="line">		<span class="built_in">table</span>.sort(a)</span><br><span class="line">		tableDebug(a) <span class="comment">-- 表中的顺序默认按键值的排序 </span></span><br><span class="line">		<span class="comment">--两次tableDebug的结果依然是 luaH_get -&gt; luaH_present -&gt; luaH_set </span></span><br><span class="line">		<span class="comment">--我们可以写一个迭代器可以按任意key的顺序来访问table 如下：</span></span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">pairsByKeys</span><span class="params">(t,f)</span></span></span><br><span class="line">			<span class="keyword">local</span> a = &#123;&#125;</span><br><span class="line">			<span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">pairs</span>(t) <span class="keyword">do</span> a[#a+<span class="number">1</span>] = n <span class="keyword">end</span></span><br><span class="line">				<span class="built_in">table</span>.sort(a,f)</span><br><span class="line">				<span class="keyword">local</span> i = <span class="number">0</span> </span><br><span class="line">				<span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">					i = i + <span class="number">1</span></span><br><span class="line">					<span class="keyword">return</span> a[i],t[a[i]]</span><br><span class="line">				<span class="keyword">end</span></span><br><span class="line">		<span class="keyword">end</span></span><br><span class="line">		<span class="keyword">for</span> name,line <span class="keyword">in</span> pairsByKeys(lines) <span class="keyword">do</span> </span><br><span class="line">			<span class="built_in">print</span>(name,line)</span><br><span class="line">		<span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>位的移动</p>
-  <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">	printx(bit32.rshift(<span class="number">0x01</span>,<span class="number">2</span>)) <span class="comment">--0</span></span><br><span class="line">printx(bit32.lshift(<span class="number">0x01</span>,<span class="number">2</span>)) <span class="comment">--4</span></span><br><span class="line">printx(bit32.rshift(-<span class="number">1</span>,<span class="number">28</span>)) <span class="comment">--0xf</span></span><br><span class="line">printx(bit32.arshift(-<span class="number">1</span>,<span class="number">28</span>)) <span class="comment">-- 0xffffffff</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<blockquote>
-<p>需要注意的是arshift是算数右移，移出来的位用1填充</p>
-</blockquote>
-<ol>
-<li><p>旋转移位<br>旋转移位顾名思义就是移位的时候是一个闭合回路，移出来的位回往另一侧填充。如下：</p>
- <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">printx(bit32.lrotate(<span class="number">0xABCDEF01</span>,-<span class="number">4</span>)) <span class="comment">--&gt; 0x1abcdef0</span></span><br><span class="line">printx(bit32.lrotate(<span class="number">0xABCDEF01</span>,-<span class="number">36</span>))  <span class="comment">--&gt;0x1abcdef0</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>btest函数与band函数类似 不过返回布尔类型 如下：</p>
- <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(bit32.btest(<span class="number">12</span>,<span class="number">1</span>)) <span class="comment">--&gt; false</span></span><br><span class="line"><span class="built_in">print</span>(bit32.btest(<span class="number">13</span>,<span class="number">1</span>)) <span class="comment">--&gt; true</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>extract函数表示取出多少位<br> bit32.extract(x,f,w) 表示返回wbits 从 f 个bit 开始取 w 个位</p>
- <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">printx(bit32.extract(<span class="number">0xABCDEF01</span>,<span class="number">4</span>,<span class="number">8</span>)) <span class="comment">--&gt;0xf0</span></span><br><span class="line">printx(bit32.extract(<span class="number">0xABCDEF01</span>,<span class="number">20</span>,<span class="number">12</span>))  <span class="comment">--&gt;0xABC</span></span><br><span class="line">printx(bit32.extract(<span class="number">0xABCDEF01</span>,<span class="number">0</span>,<span class="number">12</span>))   <span class="comment">--&gt;0xf01</span></span><br><span class="line"><span class="comment">--另外这个w计数参数取值是0-31，如果没有提供默认取1位</span></span><br><span class="line">printx(bit32.extract(<span class="number">0x0000000F</span>,<span class="number">0</span>)) <span class="comment">--&gt;0x1</span></span><br><span class="line">printx(bit32.extract(<span class="number">0xF0000000</span>,<span class="number">31</span>))  <span class="comment">--&gt;0x1</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>replace函数故名思义是替换位<br> bit32.replace(x,r,f,w) 与 bit32.extract类似，表示从x的f位开始 取w个位 替换成r</p>
- <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">printx(bit32.replace(<span class="number">0xABCDEF01</span>,<span class="number">0x55</span>,<span class="number">4</span>,<span class="number">8</span>)) <span class="comment">--&gt;0xabcde551 </span></span><br><span class="line">printx(bit32.replace(<span class="number">0xABCDEF01</span>,<span class="number">0x0</span>,<span class="number">4</span>,<span class="number">8</span>)) <span class="comment">--&gt;0xABCDE001</span></span><br></pre></td></tr></table></figure>
+<li><p>Concat 函数<br> 不要认为concat是用来连接两个table，它是用来连接表中的元素返回一个字符串。使用如下：</p>
+ <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> tabStr=&#123;</span><br><span class="line">	<span class="string">" hello "</span>,</span><br><span class="line">	<span class="string">" charly "</span>,</span><br><span class="line">	<span class="string">" are "</span>,</span><br><span class="line">	<span class="string">" you "</span>,</span><br><span class="line">	<span class="string">" ok "</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">table</span>.concat(tabStr)) <span class="comment">-- hello charly are you ok </span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="built_in">table</span>.concat(tabStr))) <span class="comment">--string</span></span><br></pre></td></tr></table></figure>
+<p> 如果想递归连接表中的元素，我们可以封装一下，如下：</p>
+ <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">rconcat</span><span class="params">(l)</span></span></span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">type</span>(l) ~= <span class="string">"table"</span> <span class="keyword">then</span> <span class="keyword">return</span> l <span class="keyword">end</span></span><br><span class="line">	<span class="keyword">local</span> res = &#123;&#125;</span><br><span class="line">	<span class="keyword">for</span> i = <span class="number">1</span> , #l <span class="keyword">do</span> </span><br><span class="line">		res[i] = rconcat(l[i])</span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">table</span>.concat(res)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">local</span> tabStr=&#123;</span><br><span class="line">	&#123;<span class="string">" a "</span>,&#123;<span class="string">" nice "</span>&#125;,<span class="string">"end"</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(rconcat(tabStr)) <span class="comment">-- a nice end</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h5 id="小尾巴">小尾巴</h5><pre><code>天色已暗，写东西的能力和速度有待提升。
+<h5 id="小尾巴">小尾巴</h5><pre><code>这个周末提前规划了一下，中午之前总结这个博客，再也不用赶到晚上。体验到了提前规划的好处。
 </code></pre><h5 id="参考书籍">参考书籍</h5><pre><code>《programming <span class="flow">in</span> Lua <span class="number">3</span><span class="built_in">rd</span> Edition》
 </code></pre></span>
       
@@ -243,24 +231,16 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/lua/" rel="tag">#lua</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/11/15/Lua的table库实践/" rel="prev">Lua的table库实践</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/10/11/php入门实践（下）/" rel="next">php入门实践（下）</a>
+              <a href="/2015/11/01/Lua的Bitwise库实践/" rel="next">Lua的Bitwise库实践</a>
             
           </div>
         </div>
@@ -308,8 +288,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/11/01/Lua的Bitwise库实践/"
-                   data-title="Lua的Bitwise库实践" data-url="http://yoursite.com/2015/11/01/Lua的Bitwise库实践/">
+              <div class="ds-thread" data-thread-key="2015/11/15/Lua的table库实践/"
+                   data-title="Lua的table库实践" data-url="http://yoursite.com/2015/11/15/Lua的table库实践/">
               </div>
             
           </div>
@@ -391,7 +371,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进入正题"><span class="nav-number">2.</span> <span class="nav-text">进入正题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#小尾巴"><span class="nav-number">2.1.</span> <span class="nav-text">小尾巴</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考书籍"><span class="nav-number">2.2.</span> <span class="nav-text">参考书籍</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较简单，主要是_insert，remove，sort，concat。下面看一下如何使用。"><span class="nav-number"></span> <span class="nav-text">比较简单，主要是 insert，remove，sort，concat。下面看一下如何使用。</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#小尾巴"><span class="nav-number">0.1.</span> <span class="nav-text">小尾巴</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#参考书籍"><span class="nav-number">0.2.</span> <span class="nav-text">参考书籍</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
