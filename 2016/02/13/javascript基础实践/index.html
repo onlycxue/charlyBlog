@@ -30,7 +30,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -39,19 +39,19 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="写在前面今天更新了一下macOS结果lua命令不能用了，想去官网下载一个重新编译一下结果官网也打不开。lua标准库中对table的操作比较简单，主要是 insert，remove，sort，concat。下面看一下如何使用。开始之前先写一个简单的调试table的函数如下：
-123456function tableDebug(t)	print(&quot;=========debug=======&quot;)	for">
+<meta name="description" content="为什么开始
+为什么又去学习一门新的脚本语言，我可以总结一下几个理由，unity3d 支持用js开发、cocoscreator的出现更说明了js在游戏开发领域中的重要性、nodejs强大的后端框架(当前开发的游戏就有用到)、js的语法简单与c语言类似，分分钟就能学会。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lua的table库实践">
-<meta property="og:url" content="http://yoursite.com/2015/11/15/Lua的table库实践/index.html">
+<meta property="og:title" content="javascript基础实践">
+<meta property="og:url" content="http://yoursite.com/2016/02/13/javascript基础实践/index.html">
 <meta property="og:site_name" content="charlygame">
-<meta property="og:description" content="写在前面今天更新了一下macOS结果lua命令不能用了，想去官网下载一个重新编译一下结果官网也打不开。lua标准库中对table的操作比较简单，主要是 insert，remove，sort，concat。下面看一下如何使用。开始之前先写一个简单的调试table的函数如下：
-123456function tableDebug(t)	print(&quot;=========debug=======&quot;)	for">
-<meta property="og:updated_time" content="2015-11-15T15:14:43.000Z">
+<meta property="og:description" content="为什么开始
+为什么又去学习一门新的脚本语言，我可以总结一下几个理由，unity3d 支持用js开发、cocoscreator的出现更说明了js在游戏开发领域中的重要性、nodejs强大的后端框架(当前开发的游戏就有用到)、js的语法简单与c语言类似，分分钟就能学会。">
+<meta property="og:updated_time" content="2016-02-13T11:39:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lua的table库实践">
-<meta name="twitter:description" content="写在前面今天更新了一下macOS结果lua命令不能用了，想去官网下载一个重新编译一下结果官网也打不开。lua标准库中对table的操作比较简单，主要是 insert，remove，sort，concat。下面看一下如何使用。开始之前先写一个简单的调试table的函数如下：
-123456function tableDebug(t)	print(&quot;=========debug=======&quot;)	for">
+<meta name="twitter:title" content="javascript基础实践">
+<meta name="twitter:description" content="为什么开始
+为什么又去学习一门新的脚本语言，我可以总结一下几个理由，unity3d 支持用js开发、cocoscreator的出现更说明了js在游戏开发领域中的重要性、nodejs强大的后端框架(当前开发的游戏就有用到)、js的语法简单与c语言类似，分分钟就能学会。">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -61,7 +61,7 @@
   };
 </script>
 
-  <title> Lua的table库实践 | charlygame </title>
+  <title> javascript基础实践 | charlygame </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -170,7 +170,7 @@
           
           
             
-              Lua的table库实践
+              javascript基础实践
             
           
         </h1>
@@ -179,8 +179,8 @@
       <div class="post-meta">
         <span class="post-time">
           发表于
-          <time itemprop="dateCreated" datetime="2015-11-15T10:23:26+08:00" content="2015-11-15">
-            2015-11-15
+          <time itemprop="dateCreated" datetime="2016-02-13T19:15:55+08:00" content="2016-02-13">
+            2016-02-13
           </time>
         </span>
 
@@ -190,8 +190,8 @@
           
             <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/11/15/Lua的table库实践/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count ds-thread-count" data-thread-key="2015/11/15/Lua的table库实践/" itemprop="commentsCount"></span>
+              <a href="/2016/02/13/javascript基础实践/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/13/javascript基础实践/" itemprop="commentsCount"></span>
               </a>
             </span>
           
@@ -205,40 +205,31 @@
       
 
       
-        <span itemprop="articleBody"><h4 id="写在前面">写在前面</h4><p>今天更新了一下macOS结果lua命令不能用了，想去官网下载一个重新编译一下结果官网也打不开。lua标准库中对table的操作比较简单，主要是 insert，remove，sort，concat。下面看一下如何使用。<br>开始之前先写一个简单的调试table的函数如下：</p>
-<pre><code><span class="comment"><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">tableDebug</span><span class="params">(t)</span></span></span><br><span class="line">	<span class="built_in">print</span>(<span class="string">"=========debug======="</span>)</span><br><span class="line">	<span class="keyword">for</span> _,v <span class="keyword">in</span> <span class="built_in">ipairs</span>(t) <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">print</span>(v)	</span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></span>
-</code></pre><ol>
-<li><p>Insert and Remove<br> insert函数使用格式如:<code>table.insert(t,p,v)</code> 其中t为将要操作的table，p为table中的位置(下标从1开始),v为要插入的值，使用方法如下：</p>
- <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> t = &#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>&#125;</span><br><span class="line"><span class="built_in">table</span>.insert(t,<span class="number">1</span>,<span class="number">40</span>) <span class="comment">--40 10 20 30</span></span><br><span class="line"><span class="built_in">table</span>.insert(t,<span class="number">50</span>) <span class="comment">--40 10 20 30 50 默认插在table中的末尾</span></span><br></pre></td></tr></table></figure>
-<p> remove函数使用格式与insert函数类似 <code>table.remove(t,p)</code>删除指定位置p的值。使用方法如下：</p>
- <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">		<span class="built_in">table</span>.remove(t) <span class="comment">-- 40 10 20 30</span></span><br><span class="line">		<span class="built_in">table</span>.remove(t,<span class="number">1</span>) <span class="comment">-- 10 20 30</span></span><br><span class="line">	``` </span><br><span class="line"><span class="number">2.</span> Sort函数 </span><br><span class="line">	一个非常有用的函数用来给<span class="built_in">table</span>做排序，使用方法如下： </span><br><span class="line"></span><br><span class="line">	```lua</span><br><span class="line">	<span class="keyword">local</span> lines = &#123;</span><br><span class="line">	luaH_set = <span class="number">10</span>,</span><br><span class="line">	luaH_get = <span class="number">24</span>,</span><br><span class="line">	luaH_present = <span class="number">48</span>,</span><br><span class="line">	&#125;</span><br><span class="line">	a = &#123;&#125;</span><br><span class="line">	<span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">pairs</span>(lines) <span class="keyword">do</span> a[#a+<span class="number">1</span>] = n <span class="keyword">end</span> <span class="comment">--取出键值，为键值排序</span></span><br><span class="line">	tableDebug(a)</span><br><span class="line">	<span class="built_in">table</span>.sort(a)</span><br><span class="line">	tableDebug(a) <span class="comment">-- 表中的顺序默认按键值的排序 </span></span><br><span class="line">	<span class="comment">--两次tableDebug的结果依然是 luaH_get -&gt; luaH_present -&gt; luaH_set </span></span><br><span class="line">	<span class="comment">--我们可以写一个迭代器可以按任意key的顺序来访问table 如下：</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">pairsByKeys</span><span class="params">(t,f)</span></span></span><br><span class="line">		<span class="keyword">local</span> a = &#123;&#125;</span><br><span class="line">		<span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">pairs</span>(t) <span class="keyword">do</span> a[#a+<span class="number">1</span>] = n <span class="keyword">end</span></span><br><span class="line">			<span class="built_in">table</span>.sort(a,f)</span><br><span class="line">			<span class="keyword">local</span> i = <span class="number">0</span> </span><br><span class="line">			<span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">				i = i + <span class="number">1</span></span><br><span class="line">				<span class="keyword">return</span> a[i],t[a[i]]</span><br><span class="line">			<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">for</span> name,line <span class="keyword">in</span> pairsByKeys(lines) <span class="keyword">do</span> </span><br><span class="line">		<span class="built_in">print</span>(name,line)</span><br><span class="line">	<span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Concat 函数<br> 不要认为concat是用来连接两个table，它是用来连接表中的元素返回一个字符串。使用如下：</p>
- <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> tabStr=&#123;</span><br><span class="line">	<span class="string">" hello "</span>,</span><br><span class="line">	<span class="string">" charly "</span>,</span><br><span class="line">	<span class="string">" are "</span>,</span><br><span class="line">	<span class="string">" you "</span>,</span><br><span class="line">	<span class="string">" ok "</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">table</span>.concat(tabStr)) <span class="comment">-- hello charly are you ok </span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(<span class="built_in">table</span>.concat(tabStr))) <span class="comment">--string</span></span><br></pre></td></tr></table></figure>
-<p> 如果想递归连接表中的元素，我们可以封装一下，如下：</p>
- <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">rconcat</span><span class="params">(l)</span></span></span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">type</span>(l) ~= <span class="string">"table"</span> <span class="keyword">then</span> <span class="keyword">return</span> l <span class="keyword">end</span></span><br><span class="line">	<span class="keyword">local</span> res = &#123;&#125;</span><br><span class="line">	<span class="keyword">for</span> i = <span class="number">1</span> , #l <span class="keyword">do</span> </span><br><span class="line">		res[i] = rconcat(l[i])</span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">table</span>.concat(res)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="keyword">local</span> tabStr=&#123;</span><br><span class="line">	&#123;<span class="string">" a "</span>,&#123;<span class="string">" nice "</span>&#125;,<span class="string">"end"</span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(rconcat(tabStr)) <span class="comment">-- a nice end</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h5 id="参考书籍">参考书籍</h5><pre><code>《programming <span class="flow">in</span> Lua <span class="number">3</span><span class="built_in">rd</span> Edition》
-</code></pre><h5 id="小尾巴">小尾巴</h5><pre><code>这个周末提前规划了一下，中午之前总结这个博客，再也不用赶到晚上。体验到了提前规划的好处。
-</code></pre></span>
+        <span itemprop="articleBody"><h4 id="为什么开始">为什么开始</h4><blockquote>
+<p>为什么又去学习一门新的脚本语言，我可以总结一下几个理由，unity3d 支持用js开发、cocoscreator的出现<br>更说明了js在游戏开发领域中的重要性、nodejs强大的后端框架(当前开发的游戏就有用到)、js的语法简单与c语言<br>类似，分分钟就能学会。</p>
+</blockquote>
+</span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/02/13/javascript基础实践/" rel="prev">javascript基础实践</a>
-            
           </div>
 
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/01/Lua的Bitwise库实践/" rel="next">Lua的Bitwise库实践</a>
+              <a href="/2015/11/15/Lua的table库实践/" rel="next">Lua的table库实践</a>
             
           </div>
         </div>
@@ -286,8 +277,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2015/11/15/Lua的table库实践/"
-                   data-title="Lua的table库实践" data-url="http://yoursite.com/2015/11/15/Lua的table库实践/">
+              <div class="ds-thread" data-thread-key="2016/02/13/javascript基础实践/"
+                   data-title="javascript基础实践" data-url="http://yoursite.com/2016/02/13/javascript基础实践/">
               </div>
             
           </div>
@@ -369,7 +360,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#参考书籍"><span class="nav-number">1.1.</span> <span class="nav-text">参考书籍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#小尾巴"><span class="nav-number">1.2.</span> <span class="nav-text">小尾巴</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么开始"><span class="nav-number">1.</span> <span class="nav-text">为什么开始</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
