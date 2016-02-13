@@ -39,19 +39,22 @@
   <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
 
 
-<meta name="description" content="为什么开始
-为什么又去学习一门新的脚本语言，我可以总结一下几个理由，unity3d支持用js开发、cocoscreator的出现更说明了js在游戏开发领域中的重要性、nodejs强大的后端框架(当前开发的游戏就有用到)、js的语法简单与c语言类似，分分钟就能学会。">
+<meta name="description" content="写在前面
+为什么又去学习一门新的脚本语言，我可以总结一下几个理由，unity3d支持用js开发、cocoscreator的出现更说明了js在游戏开发领域中的重要性、nodejs强大的后端框架(当前开发的游戏就有用到)、嘻嘻，会了js我的博客肯定会变得高大上、js的语法简单与c语言类似，分分钟就能学会。
+大部分计算机的语言语法的学习大概要经过以下几部分:1.变量(数据类型,变量的作用域)2.数组3.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript基础实践">
 <meta property="og:url" content="http://yoursite.com/2016/02/13/javascript基础实践/index.html">
 <meta property="og:site_name" content="charlygame">
-<meta property="og:description" content="为什么开始
-为什么又去学习一门新的脚本语言，我可以总结一下几个理由，unity3d支持用js开发、cocoscreator的出现更说明了js在游戏开发领域中的重要性、nodejs强大的后端框架(当前开发的游戏就有用到)、js的语法简单与c语言类似，分分钟就能学会。">
-<meta property="og:updated_time" content="2016-02-13T11:43:59.000Z">
+<meta property="og:description" content="写在前面
+为什么又去学习一门新的脚本语言，我可以总结一下几个理由，unity3d支持用js开发、cocoscreator的出现更说明了js在游戏开发领域中的重要性、nodejs强大的后端框架(当前开发的游戏就有用到)、嘻嘻，会了js我的博客肯定会变得高大上、js的语法简单与c语言类似，分分钟就能学会。
+大部分计算机的语言语法的学习大概要经过以下几部分:1.变量(数据类型,变量的作用域)2.数组3.">
+<meta property="og:updated_time" content="2016-02-13T13:48:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript基础实践">
-<meta name="twitter:description" content="为什么开始
-为什么又去学习一门新的脚本语言，我可以总结一下几个理由，unity3d支持用js开发、cocoscreator的出现更说明了js在游戏开发领域中的重要性、nodejs强大的后端框架(当前开发的游戏就有用到)、js的语法简单与c语言类似，分分钟就能学会。">
+<meta name="twitter:description" content="写在前面
+为什么又去学习一门新的脚本语言，我可以总结一下几个理由，unity3d支持用js开发、cocoscreator的出现更说明了js在游戏开发领域中的重要性、nodejs强大的后端框架(当前开发的游戏就有用到)、嘻嘻，会了js我的博客肯定会变得高大上、js的语法简单与c语言类似，分分钟就能学会。
+大部分计算机的语言语法的学习大概要经过以下几部分:1.变量(数据类型,变量的作用域)2.数组3.">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -205,10 +208,13 @@
       
 
       
-        <span itemprop="articleBody"><h4 id="为什么开始">为什么开始</h4><blockquote>
-<p>为什么又去学习一门新的脚本语言，我可以总结一下几个理由，unity3d支持用js开发、cocoscreator的出现更说明了js在游戏开发领域中的重要性、nodejs强大的后端框架(当前开发的游戏就有用到)、js的语法简单与c语言类似，分分钟就能学会。</p>
+        <span itemprop="articleBody"><h4 id="写在前面">写在前面</h4><blockquote>
+<p>为什么又去学习一门新的脚本语言，我可以总结一下几个理由，unity3d支持用js开发、cocoscreator的出现更说明了js在游戏开发领域中的重要性、nodejs强大的后端框架(当前开发的游戏就有用到)、嘻嘻，会了js我的博客肯定会变得高大上、js的语法简单与c语言类似，分分钟就能学会。</p>
+<p>大部分计算机的语言语法的学习大概要经过以下几部分:<br>1.变量(数据类型,变量的作用域)<br>2.数组<br>3.语句(循环语句，条件判断语句)<br>4.操作符(比较操作符，逻辑操作符)<br>5.函数<br>6.对象<br>我们这篇博客也将围绕这几部分来介绍js的语法基础。</p>
 </blockquote>
-</span>
+<h5 id="变量">变量</h5><p>js的数据类型有 字符串、数字、布尔、数组对象、Null、Undefined。 另外它是一种弱类型(weakly typed)语言。这意味着我们可以在任何阶段改变变量的数据类型。虽然js没有强制要求程序员必须提前声明变量，但提前声明变量是一种良好的编程习惯。下面对变量mood和age做出了声明如下：</p>
+<pre><code><span class="comment"><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mood;</span><br><span class="line"><span class="keyword">var</span> age;</span><br><span class="line"><span class="comment">//不必单独声明每个变量，也可以用一条语句一次声明多个变量</span></span><br><span class="line"><span class="keyword">var</span> mood,age;</span><br><span class="line"><span class="comment">//甚至可以一石两鸟 把变量声明和对变量的赋值一次完成：</span></span><br><span class="line"><span class="keyword">var</span> mood = <span class="string">"happy"</span>;</span><br><span class="line"><span class="keyword">var</span> age = <span class="number">33</span>;</span><br><span class="line"><span class="comment">//甚至可以像下面这样：</span></span><br><span class="line"><span class="keyword">var</span> mood = <span class="string">"happy"</span>, age = <span class="number">33</span>;</span><br></pre></td></tr></table></figure></span>
+</code></pre></span>
       
     </div>
 
@@ -360,7 +366,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么开始"><span class="nav-number">1.</span> <span class="nav-text">为什么开始</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#变量"><span class="nav-number">1.1.</span> <span class="nav-text">变量</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
